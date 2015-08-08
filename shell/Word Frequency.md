@@ -48,11 +48,11 @@ cat words.txt \
     | tr '[:upper:]' '[:lower:]' \
     | tr -s '[:space:]' '\n' \
     | sort | uniq -c\
-    | sort -nr\
-    | awk '{print $2 " " $1}'
+    | sort -nr -k2
     
 # tr -s '[:space:]' '\n' replace one or more space like char to \n
 # sort |uniq -c # uniq count only work on neighbouring repeated lines
+# sort -nr -k2 numeric reverse sort, start a key at POS2
 ```
 
 ## PHP version
