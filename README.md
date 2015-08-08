@@ -1,1 +1,1 @@
-A management platform for svn administrator.
+My leetcode notes.
