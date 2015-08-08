@@ -23,27 +23,32 @@ Hint:
 1. If the file contains less than 10 lines, what should you output?  
 2. There's at least three different solutions. Try to explore all possibilities.
 
-# Solution 1(awk)
+## Solution 1(awk)
+
 ```bash
 awk 'NR == 10 {print}' file.txt
-
-# awk 'NR == 10' file.txt
+# simpler
+awk 'NR == 10' file.txt
+# more efficient
+awk 'NR == 10; NR == 11 {exit}' file.txt
 ```
-# Solution 2(sed)
+
+## Solution 2(sed)
 ```bash
 sed -n '10p' file.txt
 # add some efficiency with '11q', 10p says to print 10th line, 11q tells it to quit at line 11
 sed -n '10p;11q' file.txt 
 ```
-# Solution 3(grep)
+
+## Solution 3(grep)
 ```bash
 cat file.txt|grep -n ""|grep "^10:"|cut -d ":" -f2
 ```
-# Solution 4(tail&head)
+## Solution 4(tail&head)
 ```bash
 tail -n+10 file.txt|head -1
 ```
-# Soution 5(loop)
+## Soution 5(loop)
 ```bash
 cnt=0
 IFS=$'\n' # prevents leading/trailing whitespace from being trimmed.
