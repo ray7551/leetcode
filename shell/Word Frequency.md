@@ -44,7 +44,7 @@ We have to consider:
 
 ```bash
 cat words.txt \
-    | tr '[:punct:]' ' ' \
+    | tr -s '[:punct:]' ' ' \
     | tr '[:upper:]' '[:lower:]' \
     | tr -s '[:space:]' '\n' \
     | sort | uniq -c\
