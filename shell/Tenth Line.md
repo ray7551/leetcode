@@ -32,6 +32,8 @@ awk 'NR == 10 {print}' file.txt
 # Solution 2(sed)
 ```bash
 sed -n '10p' file.txt
+# add some efficiency with '11q', 10p says to print 10th line, 11q tells it to quit at line 11
+sed -n '10p;11q' file.txt 
 ```
 # Solution 3(grep)
 ```bash
