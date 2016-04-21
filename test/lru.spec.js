@@ -2,7 +2,7 @@ var should = require('should');
 var LRU = require('../algorithms/146. LRU Cache/lru').LRUCache;
 
 
-shallowCopy = function (src, dst) {
+var shallowCopy = function (src, dst) {
   dst = dst || {};
   for(var key in src) {
     if (src.hasOwnProperty(key)) {
@@ -10,7 +10,7 @@ shallowCopy = function (src, dst) {
     }
   }
   return dst;
-}
+};
 
 
 describe('Cache', function() {
@@ -182,7 +182,7 @@ describe('Linked list', function() {
       cache.set('key2', 'val2');
       cache.tail.should.equal(cache.list['key2']);
     });
-    it('should be recently used item(multiple items)', function() {
+    it('should be least recently used item(multiple items)', function() {
       // capacity:2 directives: set(2), set(1), get(2), set(4), get(1), get(2)
       var cache = new LRU(2);
       cache.set(2, 2);
