@@ -22,8 +22,9 @@
 
   /**
    * @constructor
-   * @property head
-   * @property tail the least recently used key, at linked list tail
+   * @property {number} capacity
+   * @property {Object} list
+   * @property {Node} head
    */
   var LRUCache = function (capacity) {
     if (!Number.isInteger(capacity) || capacity <= 0) {
