@@ -46,12 +46,35 @@
       return -1;
     }
 
-    this.moveToHead(currentNode);
-
+    moveToHead.call(this, currentNode);
     return currentNode.val;
   };
 
-  LRUCache.prototype.unlink = function (node) {
+  /**
+   * @param {number, string} key
+   * @param {number, string} value
+   * @returns {void}
+   */
+  LRUCache.prototype.set = function (key, value) {
+    if (this.list.hasOwnProperty(key)) {
+      this.list[key].val = value;
+      moveToHead.call(this, this.list[key]);
+      return;
+    }
+
+    if (this.size() === this.capacity) {
+      deleteTail.call(this);
+    }
+
+    this.list[key] = new Node(key, value);
+    addAtBegin.call(this, this.list[key]);
+  };
+
+  LRUCache.prototype.size = function () {
+    return Object.keys(this.list).length;
+  };
+
+  var unlink = function (node) {
     if (node.prev) {
       node.prev.next = node.next;
     }
@@ -66,36 +89,14 @@
     }
   };
 
-  /**
-   * @param {number, string} key
-   * @param {number, string} value
-   * @returns {void}
-   */
-  LRUCache.prototype.set = function (key, value) {
-    if (this.list.hasOwnProperty(key)) {
-      this.list[key].val = value;
-      this.moveToHead(this.list[key]);
-      return;
-    }
-
-    if (this.size() === this.capacity) {
-      var oldTailKey = this.tail.key;
-      this.unlink(this.tail);
-      delete this.list[oldTailKey];
-    }
-
-    this.list[key] = new Node(key, value);
-    this.addAtBegin(this.list[key]);
-  };
-
-  LRUCache.prototype.moveToHead = function (node) {
+  var moveToHead = function (node) {
     if (this.head !== node) {
-      this.unlink(node);
-      this.addAtBegin(node);
+      unlink.call(this, node);
+      addAtBegin.call(this, node);
     }
   };
 
-  LRUCache.prototype.addAtBegin = function (node) {
+  var addAtBegin = function (node) {
     if (this.head === null) {
       this.head = this.tail = node;
     } else if (this.head !== node) {
@@ -105,9 +106,10 @@
     this.head = node;
   };
 
-
-  LRUCache.prototype.size = function () {
-    return Object.keys(this.list).length;
+  var deleteTail = function () {
+    var oldTailKey = this.tail.key;
+    unlink.call(this, this.tail);
+    delete this.list[oldTailKey];
   };
 
   exports.LRUCache = LRUCache;

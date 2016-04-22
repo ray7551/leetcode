@@ -47,6 +47,14 @@ describe('Cache', function() {
     cache.get('key').should.equal('value');
   });
 
+  it('should renew a existed cache', function() {
+    var cache = new LRU(2);
+    cache.set(2, 1);
+    cache.head.should.equal(cache.list[2]);
+    cache.set(2, 2);
+    cache.get(2).should.equal(2);
+  });
+
   it('should return -1 if key not exsit', function() {
     var cache = new LRU(2);
     cache.get('key').should.equal(-1);
