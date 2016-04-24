@@ -2,6 +2,14 @@ var should = require('should');
 var MinStack = require('../algorithms/155. Min Stack/minStack');
 
 describe('minStack', function () {
+  describe('constructor', function () {
+    it('should return a minStack', function () {
+      var stack = new MinStack();
+      (stack.min === null).should.be.true();
+      stack.diffStack.should.eql([]);
+    });
+  });
+  
   it('should have basic functions', function () {
     var stack = new MinStack();
     stack.push(1);
