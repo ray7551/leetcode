@@ -12,70 +12,63 @@
  Given the list [1,[4,[6]]],
 
  By calling next repeatedly until hasNext returns false, the order of elements returned by next should be: [1,4,6].
- * */
+ **/
 
 'use strict';
-var NestedInteger = require('nestedInteger');
 /**
  * @constructor
  * @param {NestedInteger[]} nestedList
  */
-var NestedIterator = function(nestedList) {
-    this.nestedList = nestedList;
-    this.current = 0;
-    this.length = nestedList.length;
+var NestedIterator = function (nestedList) {
+  this.nestedList = nestedList;
+  this.flattenIterator = flattenIteratorGen(this.nestedList);
+  this.iteratorStatus = this.flattenIterator.next();
+  this.last2Value = [];
+  this.last2Value.push(this.iteratorStatus.value);
 };
-
 
 /**
  * @this NestedIterator
  * @returns {boolean}
  */
-NestedIterator.prototype.hasNext = function() {
-    return this.current <= this.length;
+NestedIterator.prototype.hasNext = function () {
+  return this.iteratorStatus ? !this.iteratorStatus.done : true;
 };
 
 /**
  * @this NestedIterator
- * @returns {integer}
+ * @returns {number}
  */
-NestedIterator.prototype.next = function() {
-    next.call(this, this.nestedList);
-};
+NestedIterator.prototype.next = function () {
+  this.iteratorStatus = this.flattenIterator.next();
+  if (this.last2Value.length <= 1) {
+    this.last2Value.push(this.iteratorStatus.value);
+    return this.last2Value[0];
+  }
 
-var next = function(nestedList) {
-    return nestedList.forEach(function*(item) {
-        this.current++;
-        if(typeof item === 'object') {
-            next(item);
-        } else {
-            yield item;
-        }
-    });
-};
-
-
-var nestedList = new NestedInteger([1, 2, [3, 4], [5, 6, [7, 8, [9], 10], 11]]);
-var i = new NestedIterator(nestedList), a = [];
-while (i.hasNext()){
-  a.push(i.next());
-}
-
-
-let arr = ['a', 'b', ['c', 'd'], [3, 5, [8, 9, [3], 9], 10]];
-let iterator = arr[Symbol.iterator]();
-
-
-const flatten = function(iterator) {
-  let item = iterator.next();
-  while (!item.done) {
-    if(typeof item.value === 'object') {
-      flatten(item.value[Symbol.iterator]());
-    } else {
-      console.log(item.value);
-    }
-    item = iterator.next();
+  if (this.hasNext()) {
+    this.last2Value.push(this.iteratorStatus.value);
+    this.last2Value.shift();
+    return this.last2Value[0];
+  } else {
+    return this.last2Value[1];
   }
 };
 
-flatten(iterator);
+const flattenIteratorGen = function*(nestedList) {
+  for (let item of nestedList) {
+    if (item.isInteger()) {
+      yield item.getInteger();
+    } else {
+      yield *flattenIteratorGen(item.getList());
+    }
+  }
+};
+
+module.exports = NestedIterator;
+
+/**
+ * Your NestedIterator will be called like this:
+ * var i = new NestedIterator(nestedList), a = [];
+ * while (i.hasNext()) a.push(i.next());
+ */
