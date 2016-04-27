@@ -10,10 +10,21 @@ describe('#Constructor', function () {
 });
 
 describe('#hasNext', function () {
-  it('should return if iterator has next', function () {
+  it('should return true if iterator has next', function () {
     var nestedList = new NestedInteger([1, 2, [3, 4]]);
     var iterator = new NestedIterator(nestedList.getList());
     iterator.hasNext().should.be.true();
+    iterator.next();
+    iterator.hasNext().should.be.true();
+    iterator.next();
+    iterator.hasNext().should.be.true();
+  });
+  it('should return true if iterator has no next', function () {
+    var nestedList = new NestedInteger([1]);
+    var iterator = new NestedIterator(nestedList.getList());
+    iterator.hasNext().should.be.true();
+    iterator.next();
+    iterator.hasNext().should.be.false();
   });
 });
 
@@ -27,14 +38,28 @@ describe('#next', function () {
       iterator.next().should.equal(3);
       iterator.next().should.equal(4);
     });
-  });
-  context('when iterator has no next', function () {
-    it('should return null', function () {
-      var nestedList = new NestedInteger([1, 2, [3, 4]]);
+    it('should return number(single item)', function () {
+      var nestedList = new NestedInteger([[1]]);
       var iterator = new NestedIterator(nestedList.getList());
-      iterator.hasNext().should.be.true();
+      iterator.next().should.equal(1);
     });
   });
+
+  /*context('when iterator has no next', function () {
+    it('should return null(single item)', function () {
+      var nestedList = new NestedInteger([1]);
+      var iterator = new NestedIterator(nestedList.getList());
+      iterator.next();
+      (iterator.next() === null).should.be.true();
+    });
+    it('should return null(multiple item)', function () {
+      var nestedList = new NestedInteger([1, 2]);
+      var iterator = new NestedIterator(nestedList.getList());
+      iterator.next();
+      iterator.next();
+      (iterator.next() === null).should.be.true();
+    });
+  });*/
 });
 
 describe('basic', function () {
