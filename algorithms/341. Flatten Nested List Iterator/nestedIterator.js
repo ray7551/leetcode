@@ -32,7 +32,7 @@ var NestedIterator = function (nestedList) {
  * @returns {boolean}
  */
 NestedIterator.prototype.hasNext = function () {
-  return this.iteratorStatus ? !this.iteratorStatus.done : true;
+  return !this.iteratorStatus.done;
 };
 
 /**
