@@ -42,7 +42,6 @@ MinStack.prototype.pop = function () {
     return;
   }
   this.min = diff < 0 ? this.min - diff : this.min;
-  // console.log(this.diffStack);
 };
 
 /**

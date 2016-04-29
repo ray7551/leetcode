@@ -16,7 +16,6 @@ describe('minStack', function () {
     stack.top().should.equal(1);
     stack.getMin().should.equal(1);
     stack.pop();
-    console.log(stack.top());
     (stack.top() === null).should.be.true();
   });
 
