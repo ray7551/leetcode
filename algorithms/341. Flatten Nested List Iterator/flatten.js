@@ -6,7 +6,7 @@ const arr = [0, 1, [2, 3], [4, 5, [8, 9, [3], 9], 10]];
 
 const makeFlattenIterator = function* (arr) {
   for(let item of arr) {
-    if(typeof item === 'object') {
+    if(typeof item[Symbol.iterator] === 'function') {
       yield *makeFlattenIterator(item);
     } else {
       yield item;
