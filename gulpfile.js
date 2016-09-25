@@ -4,7 +4,7 @@ var notifierReporter = require('mocha-notifier-reporter');
 
 
 gulp.task('mocha', function () {
-  return gulp.src(['test/*.js'], { read: false })
+  return gulp.src(['test/**/*.js'], { read: false })
     .pipe(mocha({
       //reporter: 'list'
       reporter: notifierReporter.decorate('Spec')

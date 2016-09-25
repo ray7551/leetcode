@@ -1,5 +1,5 @@
 var should = require('should');
-var LRU = require('../algorithms/146. LRU Cache/lru').LRUCache;
+var LRU = require('../../algorithms/146. LRU Cache/lru').LRUCache;
 
 
 var shallowCopy = function (src, dst) {

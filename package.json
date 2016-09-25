@@ -4,7 +4,7 @@
   "description": "My leetcode notes.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "gulp mocha"
   },
   "repository": {
     "type": "git",

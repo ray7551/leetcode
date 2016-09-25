@@ -1,5 +1,5 @@
 var should = require('should');
-var NestedInteger = require('../algorithms/341. Flatten Nested List Iterator/nestedInteger');
+var NestedInteger = require('../../algorithms/341. Flatten Nested List Iterator/nestedInteger');
 
 // describe('#Constructor', function () {
 //   context('when given an Integer', function () {

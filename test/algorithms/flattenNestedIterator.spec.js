@@ -1,6 +1,6 @@
 var should = require('should');
-var NestedInteger = require('../algorithms/341. Flatten Nested List Iterator/nestedInteger');
-var NestedIterator = require('../algorithms/341. Flatten Nested List Iterator/nestedIterator');
+var NestedInteger = require('../../algorithms/341. Flatten Nested List Iterator/nestedInteger');
+var NestedIterator = require('../../algorithms/341. Flatten Nested List Iterator/nestedIterator');
 // []
 // [1]
 // [[1]]

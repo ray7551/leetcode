@@ -1,5 +1,5 @@
 var should = require('should');
-var MinStack = require('../algorithms/155. Min Stack/minStack');
+var MinStack = require('../../algorithms/155. Min Stack/minStack');
 
 describe('minStack', function () {
   describe('constructor', function () {
