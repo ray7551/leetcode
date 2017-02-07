@@ -23,9 +23,9 @@ const isNumber = (s) => {
   /** This transform table is DFA of regex [-+]?((\d+\.?)|(\d*\.\d+))(e[-+]?\d+)?
    * You can get it from http://hackingoff.com/compilers/regular-expression-to-nfa-dfa
    * There are 4 type of input chars:
-   * s -+,
-   * d .,
-   * n 0-9,
+   * s -+
+   * d .
+   * n 0-9
    * e eE
    */
   const transformTable = {

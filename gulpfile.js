@@ -1,7 +1,6 @@
 const gulp = require('gulp');
 const mocha = require('gulp-mocha');
-var notifierReporter = require('mocha-notifier-reporter');
-
+let notifierReporter = require('mocha-notifier-reporter');
 
 gulp.task('mocha', function () {
   return gulp.src(['test/**/*.js'], { read: false })
@@ -12,5 +11,5 @@ gulp.task('mocha', function () {
 });
 
 gulp.task('watch', function () {
-  gulp.watch(['algorithms/**/*.js', 'test/**/*.js'], ['mocha']);
+  gulp.watch(['algorithms/**/*.js', 'test/**/*.js', 'structures/**/*.js'], ['mocha']);
 });
